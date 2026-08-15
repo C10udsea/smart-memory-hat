@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>智能记忆帽 · 多视角视觉记忆辅助系统</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header class="app-header">
+    <h1>智能记忆帽</h1>
+    <p>多视角视觉记忆辅助系统 · 交互端</p>
+  </header>
+
+  <nav class="tabs">
+    <button class="tab active" data-tab="query">视觉记忆检索</button>
+    <button class="tab" data-tab="reminder">主动记忆提醒</button>
+    <button class="tab" data-tab="upload">画面帧上传</button>
+  </nav>
+
+  <main>
+    <section id="panel-query" class="panel active">
+      <div class="card">
+        <label for="userPrompt">你想问什么？</label>
+        <textarea id="userPrompt" rows="3" placeholder="例如：我昨天把钥匙放在哪里了？"></textarea>
+
+        <label for="range">检索时间范围</label>
+        <select id="range">
+          <option value="1">最近 1 小时</option>
+          <option value="6">最近 6 小时</option>
+          <option value="24" selected>最近 24 小时</option>
+          <option value="168">最近 7 天</option>
+          <option value="0">自定义</option>
+        </select>
+
+        <div id="customRange" class="hidden">
+          <label for="startTime">开始时间</label>
+          <input type="datetime-local" id="startTime" />
+          <label for="endTime">结束时间</label>
+          <input type="datetime-local" id="endTime" />
+        </div>
+
+        <button id="queryBtn" class="primary">查询记忆</button>
+      </div>
+
+      <div class="card">
+        <h2>回答</h2>
+        <p id="queryAnswer" class="answer status">查询结果会显示在这里</p>
+        <div id="queryEvidence" class="evidence"></div>
+      </div>
+    </section>
+
+    <section id="panel-reminder" class="panel">
+      <div class="card">
+        <label for="targetName">目标物品</label>
+        <input type="text" id="targetName" placeholder="例如：药盒" />
+
+        <label for="reminderText">提醒内容</label>
+        <textarea id="reminderText" rows="3" placeholder="例如：看到药盒时提醒我服药"></textarea>
+
+        <button id="reminderBtn" class="primary">录入提醒</button>
+        <p class="hint">录入后，当摄像头再次拍到该物品并达到相似度阈值时，系统会语音提醒。</p>
+      </div>
+
+      <div class="card">
+        <h2>状态</h2>
+        <p id="reminderStatus" class="status">尚未录入</p>
+      </div>
+    </section>
+
+    <section id="panel-upload" class="panel">
+      <div class="card">
+        <label for="frameFile">选择画面图片</label>
+        <input type="file" id="frameFile" accept="image/*" />
+        <img id="framePreview" class="preview hidden" alt="预览" />
+        <button id="uploadBtn" class="primary">上传画面帧</button>
+        <p class="hint">用于向云端写入一帧视觉记忆（对应后端 /upload_frame 接口）。</p>
+      </div>
+
+      <div class="card">
+        <h2>状态</h2>
+        <p id="uploadStatus" class="status">尚未上传</p>
+      </div>
+    </section>
+  </main>
+
+  <script src="js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,34 @@
+# Python
+__pycache__/
+*.pyc
+
+# Chroma 数据库缓存（运行时生成，不提交）
+backend/memory_db/*
+backend/visual_memory_db/*
+
+# 采集图片数据（含隐私，不提交）
+backend/memory_images/*
+
+# 保留空目录的占位文件
+!backend/memory_db/.gitkeep
+!backend/visual_memory_db/.gitkeep
+!backend/memory_images/.gitkeep
+
+# 环境变量与密钥（本地配置，绝不提交）
+.env
+.env.*
+!.env.example
+
+# Python 虚拟环境
+.venv/
+venv/
+
+# 操作系统文件
+.DS_Store
+Thumbs.db
+
+# Arduino / PlatformIO 构建产物
+hardware/**/build/
+hardware/**/.pio/
+*.elf
+
