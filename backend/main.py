@@ -9,9 +9,14 @@ import os
 import base64
 import io
 import time
+from pathlib import Path
 
 # 使用国内镜像源下载 Hugging Face 模型
 os.environ['HF_ENDPOINT'] = 'https://hf-mirror.com'
+
+from dotenv import load_dotenv
+
+load_dotenv(Path(__file__).resolve().parent / '.env')
 
 from fastapi import FastAPI, UploadFile, File
 from fastapi.middleware.cors import CORSMiddleware
