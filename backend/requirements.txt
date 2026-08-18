@@ -5,3 +5,5 @@ sentence-transformers
 pillow
 openai
 pydantic
+
+python-dotenv
